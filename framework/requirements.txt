@@ -1,3 +1,5 @@
+pip==20.3.3
+wheel==0.34.2
 aiohttp-cache==2.0.2
 aiohttp-cors==0.7.0
 aiohttp-jinja2==1.2.0
@@ -59,4 +61,3 @@ urllib3==1.25.9
 uvloop==0.14.0
 websocket-client==0.57.0
 Werkzeug==1.0.1
-wheel==0.34.2
