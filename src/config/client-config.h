@@ -38,6 +38,7 @@ typedef struct _agent {
     char *lip;
     int notify_time;
     int max_time_reconnect_try;
+    int main_ip_update_time;
     char *profile;
     int buffer;
     int buflength;
