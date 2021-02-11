@@ -889,8 +889,8 @@ endif
 TAR := tar -xf
 GUNZIP := gunzip
 CURL := curl -so
-VERSION = $(shell cat VERSION)
-RESOURCES_URL := https://packages.wazuh.com/deps/$(VERSION)
+DEPS_VERSION = 10
+RESOURCES_URL := https://packages.wazuh.com/deps/$(DEPS_VERSION)
 CPYTHON := cpython
 ifeq (${PREFIX},/var/ossec)
 	# Download the Python sources if we are building for any other OS.
