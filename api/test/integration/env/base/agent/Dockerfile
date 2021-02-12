@@ -5,7 +5,13 @@ FROM ubuntu:16.04 as base_agent
 ARG agent_branch
 
 # install dependencies
-RUN apt-get update && apt-get install tree python python3 git gnupg2 gcc make vim libc6-dev curl policycoreutils automake autoconf libtool apt-transport-https lsb-release python-cryptography sqlite3 build-essential openjdk-8-jre -y && curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add - && echo "deb https://s3-us-west-1.amazonaws.com/packages-dev.wazuh.com/staging/apt/ unstable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+RUN apt-get update && apt-get install tree python python3 git gnupg2 gcc g++ make vim libc6-dev curl policycoreutils automake autoconf libtool apt-transport-https lsb-release python-cryptography sqlite3 build-essential openjdk-8-jre -y && curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add - && echo "deb https://s3-us-west-1.amazonaws.com/packages-dev.wazuh.com/staging/apt/ unstable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+
+# Install cmake version 3.18.3
+RUN curl -OL http://packages.wazuh.com/utils/cmake/cmake-3.18.3.tar.gz && tar -zxf cmake-3.18.3.tar.gz
+RUN cd cmake-3.18.3 && ./bootstrap --no-system-curl
+RUN make install
+RUN cd .. && rm -rf cmake-*
 
 ## install Wazuh
 RUN git clone https://github.com/wazuh/wazuh && cd /wazuh && git checkout $agent_branch
